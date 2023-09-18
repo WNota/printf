@@ -26,6 +26,11 @@ The `<stdarg.h>` header provides the macros and functions to handle variable arg
 
 ### *. . . More details will added here as we progress in the project*
 
+## Project File Structure:
+1. `main.h` — header file that contains all used functions and custom struct types.
+2. `_printf.c` — contains our custom printf implimentation
+3. `handlers.c` — functions that handle different argument type
+4. `helper_functions.c` — useful functions such as _putchar()
 
 ## Team Members:
 **Winnie Nota** — [*contact*](mailto:winnienota1@gmail.com) \
