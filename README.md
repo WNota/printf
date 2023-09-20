@@ -24,8 +24,6 @@ The `<stdarg.h>` header provides the macros and functions to handle variable arg
 
 6. **Testing**: Create a set of test cases to verify that our custom `printf` function behaves correctly and produces the expected output for various format strings and arguments.
 
-### *. . . More details will added here as we progress in the project*
-
 ## Project File Structure:
 1. `main.h` — header file that contains all used functions and custom struct types.
 2. `_printf.c` — contains our custom printf implimentation
