@@ -30,3 +30,39 @@ int print_string(char *str)
 	return (i);
 }
 
+/**
+ * print_number - print a number using recursive
+ * @n: a number to be printed.
+ * Description: print a given number digit by digit
+ * Return: void
+ */
+void print_number(int n)
+{
+	if (n < 0) /* negative number */
+	{
+		_putchar('-');
+		n = -n;
+	}
+	if (n >= 10) /* multi-digit number*/
+	{
+		print_number(n / 10);
+		_putchar((n % 10) + '0');
+	}
+	else /* number contains one digit */
+	{
+		_putchar(n + '0');
+	}
+}
+
+/**
+ * number_length - output the length of number
+ * @number: input integer
+ * Description: get the length of the input number using recursive
+ * Return: integer - number length
+ */
+int number_length(int number)
+{
+	if (number == 0)
+		return (0);
+	return (1 + number_length(number / 10));
+}

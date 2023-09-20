@@ -12,11 +12,12 @@ int _printf(const char *format, ...)
 	int count = 0;
 	va_list args;
 
-	va_start(args, format); /*  initializes the va_list */
+	va_start(args, format); /* initializes the va_list */
 
-	if (!format || !format[0]) /*  check if format is valid */
+	if (!format) /* check if format is valid */
 		return (-1);
-
+	if (!format[0]) /* check if format is empty */
+		return (0);
 	while (*format) /* go through every format character */
 	{
 		if (*format == '%') /* placeholder is encountred */

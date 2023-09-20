@@ -13,6 +13,8 @@ int (*get_handler_func(char sp))(va_list args)
 	placeholders_t placeholders[] = {
 		{'c', handle_char},
 		{'s', handle_string},
+		{'d', handle_number},
+		{'i', handle_number}
 	};
 
 	/* get placeholders array size */
@@ -60,4 +62,25 @@ int handle_string(va_list args)
 	}
 
 	return (print_string(str));
+}
+
+/**
+ * handle_number - handle number argument
+ * @args: variable arguments list
+ * Return: printed digitss count
+ */
+int handle_number(va_list args)
+{
+	int count = 0;
+	int number_arg = va_arg(args, int);
+
+	if (number_arg < 0) /* count minus (-) if number is negative */
+		count++;
+
+	/* count number digits */
+	count += number_length(number_arg);
+
+	print_number(number_arg);
+
+	return (count);
 }
