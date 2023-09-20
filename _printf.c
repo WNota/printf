@@ -5,7 +5,7 @@
  * @...: variable arguments to be printed
  * Description: prints all passed arguments in a specific format
  * just like the standard printf does.
- * Return: integer - the count of the printed characters (-1 for error)
+ * Return: integer - the count of the printed characters or (-1 for error)
  */
 int _printf(const char *format, ...)
 {
