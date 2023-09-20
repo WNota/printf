@@ -9,7 +9,7 @@
  * struct placeholders - string placeholder struct
  *
  * @specifier: specifier character (ex: c / s / d ...etc)
- * @handler_func: The handler function associated
+ * @handler_func: The handler function associated.
  */
 typedef struct placeholders
 {
