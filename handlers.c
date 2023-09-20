@@ -3,7 +3,7 @@
 /**
  * get_handler_func - selects the correct function to execute
  * based on the format specifier
- * @sp: placeholder specifier
+ * @sp: placeholder specifier.
  * Return: pointer to the corresponding function OR NULL if it fails
  */
 int (*get_handler_func(char sp))(va_list args)
