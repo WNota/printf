@@ -73,7 +73,9 @@ int number_length(int number)
 
 int main(void)
 {
-	unsigned int value = 42;
+	unsigned int num = 42;
 
-	_print("Binary represeentation of %u is %b\n", value, value);
+	_printf("Binary representation of %u is %b\n", num, num);
+	
 	return (0);
+}

@@ -15,12 +15,11 @@ int (*get_handler_func(char sp))(va_list args)
 		{'s', handle_string},
 		{'d', handle_number},
 		{'i', handle_number},
-		{'b', handle_binary}
+		{'b', handle_binary},
 	};
 
 	/* get placeholders array size */
 	array_size = sizeof(placeholders) / sizeof(placeholders[0]);
-
 	/* loop over placeholders array to find a match */
 	for (index = 0; index < array_size; index++)
 	{
@@ -87,24 +86,26 @@ int handle_number(va_list args)
 }
 /**
  * handle_binary - handles unsigned integer converted to binary
- * @num: number
- * Return: count (Success)
+ * @args: variable argument
+ * Return: printed_chars (Success)
  */
-int handle_binary(unsigned int num)
+int handle_binary(va_list args)
 {
+	unsigned int num = va_arg(args, unsigned int);
 	int bits[sizeof(unsigned int) * 8];
-	int count = 0;
-	int i;
+	size_t i;
+	size_t printed_chars = 0;
 
-	for (i = sizeof(unsigned int) * 8 - 1; i >= 0; i--)
+	for (i = sizeof(unsigned int) * 8; i > 0; i--)
 	{
-		bits[i] = num % 2;
+		size_t index = i - 1;
+		bits[index] = num % 2;
 		num /= 2;
 	}
 	for (i = 0; i < sizeof(unsigned int) * 8; i++)
 	{
 		putchar(bits[i] + '0');
-		count++;
+		printed_chars++;
 	}
-	return (count);
+	return (printed_chars);
 }

@@ -21,7 +21,7 @@ typedef struct placeholders
 int handle_char(va_list args);
 int handle_string(va_list args);
 int handle_number(va_list args);
-int handle_binary(unsigned int num);
+int handle_binary(va_list args);
 
 /* functions */
 int (*get_handler_func(char sp))(va_list args);
