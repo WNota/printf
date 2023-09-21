@@ -22,8 +22,6 @@ int _printf(const char *format, ...)
 	{
 		if (*format == '%') /* placeholder is encountred */
 		{
-			format++; /* move pointer to the next character */
-
 			if (*format == '%') /* other % encountered */
 				count += _putchar('%');
 			/* call the right handler function */
@@ -50,4 +48,3 @@ int _printf(const char *format, ...)
 	va_end(args);
 	return (count);
 }
-

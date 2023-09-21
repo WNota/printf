@@ -66,3 +66,14 @@ int number_length(int number)
 		return (0);
 	return (1 + number_length(number / 10));
 }
+/**
+ * main - Handles a binary function
+ * Return: 0 (Success)
+ */
+
+int main(void)
+{
+	unsigned int value = 42;
+
+	_print("Binary represeentation of %u is %b\n", value, value);
+	return (0);

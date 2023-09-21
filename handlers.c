@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * get_handler_func - selects the correct function to execute
@@ -15,7 +14,8 @@ int (*get_handler_func(char sp))(va_list args)
 		{'c', handle_char},
 		{'s', handle_string},
 		{'d', handle_number},
-		{'i', handle_number}
+		{'i', handle_number},
+		{'b', handle_binary}
 	};
 
 	/* get placeholders array size */
@@ -83,5 +83,28 @@ int handle_number(va_list args)
 
 	print_number(number_arg);
 
+	return (count);
+}
+/**
+ * handle_binary - handles unsigned integer converted to binary
+ * @num: number
+ * Return: count (Success)
+ */
+int handle_binary(unsigned int num)
+{
+	int bits[sizeof(unsigned int) * 8];
+	int count = 0;
+	int i;
+
+	for (i = sizeof(unsigned int) * 8 - 1; i >= 0; i--)
+	{
+		bits[i] = num % 2;
+		num /= 2;
+	}
+	for (i = 0; i < sizeof(unsigned int) * 8; i++)
+	{
+		putchar(bits[i] + '0');
+		count++;
+	}
 	return (count);
 }
