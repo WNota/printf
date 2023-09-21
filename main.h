@@ -9,7 +9,7 @@
  * struct placeholders - string placeholder struct
  *
  * @specifier: specifier character (ex: c / s / d ...etc)
- * @handler_func: The handler function associated.
+ * @handler_func: The handler function associated
  */
 typedef struct placeholders
 {
@@ -21,7 +21,6 @@ typedef struct placeholders
 int handle_char(va_list args);
 int handle_string(va_list args);
 int handle_number(va_list args);
-int handle_binary(va_list args);
 
 /* functions */
 int (*get_handler_func(char sp))(va_list args);
@@ -32,4 +31,3 @@ void print_number(int n);
 int number_length(int number);
 
 #endif
-

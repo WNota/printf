@@ -3,7 +3,7 @@
 /**
  * get_handler_func - selects the correct function to execute
  * based on the format specifier
- * @sp: placeholder specifier.
+ * @sp: placeholder specifier
  * Return: pointer to the corresponding function OR NULL if it fails
  */
 int (*get_handler_func(char sp))(va_list args)
@@ -14,12 +14,12 @@ int (*get_handler_func(char sp))(va_list args)
 		{'c', handle_char},
 		{'s', handle_string},
 		{'d', handle_number},
-		{'i', handle_number},
-		{'b', handle_binary},
+		{'i', handle_number}
 	};
 
 	/* get placeholders array size */
 	array_size = sizeof(placeholders) / sizeof(placeholders[0]);
+
 	/* loop over placeholders array to find a match */
 	for (index = 0; index < array_size; index++)
 	{
@@ -84,28 +84,4 @@ int handle_number(va_list args)
 
 	return (count);
 }
-/**
- * handle_binary - handles unsigned integer converted to binary
- * @args: variable argument
- * Return: printed_chars (Success)
- */
-int handle_binary(va_list args)
-{
-	unsigned int num = va_arg(args, unsigned int);
-	int bits[sizeof(unsigned int) * 8];
-	size_t i;
-	size_t printed_chars = 0;
 
-	for (i = sizeof(unsigned int) * 8; i > 0; i--)
-	{
-		size_t index = i - 1;
-		bits[index] = num % 2;
-		num /= 2;
-	}
-	for (i = 0; i < sizeof(unsigned int) * 8; i++)
-	{
-		putchar(bits[i] + '0');
-		printed_chars++;
-	}
-	return (printed_chars);
-}
