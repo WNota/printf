@@ -14,7 +14,8 @@ int (*get_handler_func(char sp))(va_list args)
 		{'c', handle_char},
 		{'s', handle_string},
 		{'d', handle_number},
-		{'i', handle_number}
+		{'i', handle_number},
+		{'b', handle_binary}
 	};
 
 	/* get placeholders array size */
@@ -54,6 +55,7 @@ int handle_string(va_list args)
 {
 	char *str;
 
+	/* get string argument */
 	str = va_arg(args, char *);
 
 	if (str == NULL)
@@ -72,9 +74,11 @@ int handle_string(va_list args)
 int handle_number(va_list args)
 {
 	int count = 0;
+
+	/* get number argument */
 	int number_arg = va_arg(args, int);
 
-	if (number_arg < 0) /* count minus (-) if number is negative */
+	if (number_arg <= 0) /* count minus if number is negative or equal 0 */
 		count++;
 
 	/* count number digits */
@@ -85,3 +89,37 @@ int handle_number(va_list args)
 	return (count);
 }
 
+/**
+ * handle_binary - handle binary argument
+ * @args: variable arguments list
+ * Return: printed characters count
+ */
+int handle_binary(va_list args)
+{
+	int binary[32]; /* Array to store binary digits */
+	int index = 0;
+
+	/* get decimal argument */
+	int decimal = va_arg(args, int);
+
+	if (decimal == 0)
+	{
+		_putchar(0 + '0');
+		return (1);
+	}
+
+	while (decimal > 0)
+	{
+		binary[index] = decimal % 2; /* Get the remainder (0 or 1) */
+		decimal = decimal / 2;       /* Divide the decimal number by 2 */
+		index++; /* Move to the next position in the binary array */
+	}
+
+	/* Print the binary representation in reverse order */
+	for (int i = index - 1; i >= 0; i--)
+	{
+		_putchar(binary[i] + '0');
+	}
+
+	return (index);
+}

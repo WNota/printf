@@ -38,7 +38,14 @@ int print_string(char *str)
  */
 void print_number(int n)
 {
-	if (n < 0) /* negative number */
+	if (n == -2147483648) /* handle INT_MIN special case */
+	{
+		_putchar('-');
+		_putchar('2');
+		print_number(147483648);
+		return;
+	}
+	else if (n < 0) /* negative number */
 	{
 		_putchar('-');
 		n = -n;

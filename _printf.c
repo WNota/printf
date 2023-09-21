@@ -24,6 +24,9 @@ int _printf(const char *format, ...)
 		{
 			format++; /* move pointer to the next character */
 
+			if (*format == '\0' && count == 0) /* format == "%" case */
+				return (-1);
+
 			if (*format == '%') /* other % encountered */
 				count += _putchar('%');
 			/* call the right handler function */
