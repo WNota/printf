@@ -13,7 +13,6 @@ int _printf(const char *format, ...)
 	va_list args;
 
 	va_start(args, format); /* initializes the va_list */
-
 	if (!format) /* check if format is valid */
 		return (-1);
 	if (!format[0]) /* check if format is empty */
@@ -23,7 +22,8 @@ int _printf(const char *format, ...)
 		if (*format == '%') /* placeholder is encountred */
 		{
 			format++; /* move pointer to the next character */
-
+			if (*format == '\0' && count == 0) /* format == "%" case */
+				return (-1);
 			if (*format == '%') /* other % encountered */
 				count += _putchar('%');
 			/* call the right handler function */

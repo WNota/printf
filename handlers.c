@@ -97,7 +97,7 @@ int handle_number(va_list args)
 int handle_binary(va_list args)
 {
 	int binary[32]; /* Array to store binary digits */
-	int index = 0;
+	int i, index = 0;
 
 	/* get decimal argument */
 	int decimal = va_arg(args, int);
@@ -116,7 +116,7 @@ int handle_binary(va_list args)
 	}
 
 	/* Print the binary representation in reverse order */
-	for (int i = index - 1; i >= 0; i--)
+	for (i = index - 1; i >= 0; i--)
 	{
 		_putchar(binary[i] + '0');
 	}
