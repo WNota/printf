@@ -107,19 +107,32 @@ int handle_binary(va_list args)
 		_putchar(0 + '0');
 		return (1);
 	}
-
-	while (decimal > 0)
+	/* Handle negative numbers */
+	if (decimal < 0)
 	{
-		binary[index] = decimal % 2; /* Get the remainder (0 or 1) */
-		decimal = decimal / 2;       /* Divide the decimal number by 2 */
-		index++; /* Move to the next position in the binary array */
-	}
+		/* Convert to the two's complement representation */
+		int mask = 1 << 31;  /* Mask with the most significant bit set */
 
-	/* Print the binary representation in reverse order */
-	for (i = index - 1; i >= 0; i--)
+		for (i = 0; i < 32; i++)
+		{
+			binary[index++] = (decimal & mask) ? 1 : 0;
+			decimal <<= 1;  /* Left shift by 1 */
+		}
+		/* Print the binary representation */
+		for (i = 0; i < index; i++)
+			_putchar(binary[i] + '0');
+	}
+	else
 	{
-		_putchar(binary[i] + '0');
+		while (decimal > 0)
+		{
+			binary[index] = decimal % 2; /* Get the remainder (0 or 1) */
+			decimal = decimal / 2;       /* Divide the decimal number by 2 */
+			index++; /* Move to the next position in the binary array */
+		}
+		/* Print the binary representation in reverse order */
+		for (i = index - 1; i >= 0; i--)
+			_putchar(binary[i] + '0');
 	}
-
 	return (index);
 }
