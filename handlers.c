@@ -15,7 +15,8 @@ int (*get_handler_func(char sp))(va_list args)
 		{'s', handle_string},
 		{'d', handle_number},
 		{'i', handle_number},
-		{'b', handle_binary}
+		{'b', handle_binary},
+		{'r', handle_reversed_string}
 	};
 
 	/* get placeholders array size */
@@ -135,4 +136,32 @@ int handle_binary(va_list args)
 			_putchar(binary[i] + '0');
 	}
 	return (index);
+}
+
+/**
+ * handle_reversed_string - handle string in reverse specifier
+ * @args: variable arguments list
+ * Return: printed characters count
+ */
+int handle_reversed_string(va_list args)
+{
+	int i = 0, count = 0;
+	char *str;
+
+	str = va_arg(args, char *);
+	if (str == NULL)
+	{
+		str = ")Null(";
+	}
+
+	/* get string length */
+	while (str[i])
+		i++;
+
+	for (i = i - 1; i >= 0; i--)
+	{
+		_putchar(str[i]);
+		count++;
+	}
+	return (count);
 }
