@@ -23,6 +23,7 @@ int handle_string(va_list args);
 int handle_number(va_list args);
 int handle_binary(va_list args);
 int handle_reversed_string(va_list args);
+int handle_rot13string(va_list args);
 
 /* functions */
 int (*get_handler_func(char sp))(va_list args);

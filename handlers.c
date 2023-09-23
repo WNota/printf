@@ -16,7 +16,8 @@ int (*get_handler_func(char sp))(va_list args)
 		{'d', handle_number},
 		{'i', handle_number},
 		{'b', handle_binary},
-		{'r', handle_reversed_string}
+		{'r', handle_reversed_string},
+		{'R', handle_rot13string}
 	};
 
 	/* get placeholders array size */
@@ -162,6 +163,43 @@ int handle_reversed_string(va_list args)
 	{
 		_putchar(str[i]);
 		count++;
+	}
+	return (count);
+}
+
+/**
+ * handle_rot13string - handle rot13string custom conversion specifier
+ * @args: variable arguments list
+ * Return: printed characters count
+ */
+int handle_rot13string(va_list args)
+{
+	char *str;
+	unsigned int i, j, count = 0;
+	char input[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char output[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	str = va_arg(args, char *);
+
+	if (str == NULL)
+		str = "(AHYY)";
+
+	for (i = 0; str[i]; i++)
+	{
+		for (j = 0; input[j]; j++)
+		{
+			if (input[j] == str[i])
+			{
+				_putchar(output[j]);
+				count++;
+				break;
+			}
+		}
+		if (!input[j])
+		{
+			_putchar(str[i]);
+			count++;
+		}
 	}
 	return (count);
 }
